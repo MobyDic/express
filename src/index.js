@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import canonize from './canonize';
 
 const app = express();
 app.use(cors());
@@ -32,7 +33,11 @@ if (arr_name.length>3||arr_name[0]=="")
 var res_name = 'Invalid fullname';
 
 res.send(res_name);
+});
 
+app.get('/task2C', (req, res) => {
+  const url = req.query.username;
+  res.send(canonize(url).toString());
 });
 
 app.listen(3000, () => {
